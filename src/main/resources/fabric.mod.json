@@ -1,0 +1,17 @@
+{
+  "id": "corkianchunks",
+  "name": "Corkian Chunks",
+  "environment": "client",
+  "entrypoints": {
+    "main": [
+      "io.github.roguim.corkianchunks.Main"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=0.16.2",
+    "minecraft": "~1.21.0",
+    "java": ">=21",
+    "fabric-api": "*"
+  },
+  "mixins": []
+}
