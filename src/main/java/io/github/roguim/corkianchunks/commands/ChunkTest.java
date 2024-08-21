@@ -1,10 +1,17 @@
 package io.github.roguim.corkianchunks.commands;
 
+import com.mojang.brigadier.LiteralMessage;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.context.CommandContext;
+import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.command.ServerCommandSource;
+import net.minecraft.text.Text;
 import net.minecraft.world.World;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.util.function.Supplier;
 
 public class ChunkTest {
     /**
@@ -14,7 +21,7 @@ public class ChunkTest {
      *                  chunkCoordZ - int
      * @return int
      */
-    public static int executor(CommandContext<ServerCommandSource> context) {
+    public static int executor(CommandContext<FabricClientCommandSource> context) {
         int multiplier = 3;
 
         int x = IntegerArgumentType.getInteger(context, "chunkCoordX");
@@ -32,7 +39,9 @@ public class ChunkTest {
         double y = context.getSource().getPosition().y;
 
         // East Wall
-        world.addParticle(ParticleTypes.FALLING_OBSIDIAN_TEAR, xEastBound, y, zNthBound, 0, 16 * multiplier, 16 * multiplier);
+        Logger logger = LoggerFactory.getLogger("corkianchunks");
+        world.addParticle(ParticleTypes.FALLING_OBSIDIAN_TEAR, true, xEastBound, y, zNthBound, 0, -6 * multiplier, 16 * multiplier);
+        context.getSource().sendFeedback(Text.literal("%s %s %s input. Calc: %s %s".formatted(x,y,z,xEastBound,zNthBound)));
         return 1;
     }
 }

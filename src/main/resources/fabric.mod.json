@@ -1,5 +1,7 @@
 {
+  "schemaVersion": 1,
   "id": "corkianchunks",
+  "version": "0.0.1",
   "name": "Corkian Chunks",
   "environment": "client",
   "entrypoints": {
